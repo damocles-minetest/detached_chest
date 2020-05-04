@@ -38,9 +38,10 @@ function detached_chest.setup_inventory(player, channel)
     local file = io.open(save_file,"r")
 		if file then
 	    local data = file:read("*a")
-	    if data then
-	      inv:set_list("main", minetest.deserialize(data))
-	    end
+			local stacks = minetest.deserialize(data)
+			for i, stack in ipairs(stacks) do
+				inv:set_stack("main", i, ItemStack(stack))
+			end
 	    file:close()
 		end
 
@@ -58,15 +59,19 @@ minetest.register_on_leaveplayer(function(player)
     return
   end
 
-  for inv_name, _ in pairs(player_inventories[playername]) do
-    -- persist
-		--[[
+  for inv_name, inv in pairs(player_inventories[playername]) do
+		-- persist
+		local list = inv:get_list("main")
+		local data = {}
+		for _, stack in ipairs(list) do
+			table.insert(data, stack:to_string())
+		end
+
     local save_file = get_save_file(playername, inv_name)
     local file = io.open(save_file,"w")
-    local data = minetest.serialize(inv:get_list("main"))
-    file:write(data)
+    file:write(minetest.serialize(data))
     file:close()
-		--]]
+
     minetest.remove_detached_inventory(inv_name)
   end
 end)

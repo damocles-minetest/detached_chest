@@ -21,8 +21,11 @@ function detached_chest.show_form_inventory(pos, player)
     "listring[current_player;main]" ..
     default.get_hotbar_bg(0,4.85)
 
-  minetest.show_formspec(playername,
-		FORMNAME .. ";" .. minetest.pos_to_string(pos),
-		formspec
-	)
+  minetest.after(0, function()
+    -- send formspec after detached inv packet got out
+    minetest.show_formspec(playername,
+      FORMNAME .. ";" .. minetest.pos_to_string(pos),
+      formspec
+    )
+  end)
 end
