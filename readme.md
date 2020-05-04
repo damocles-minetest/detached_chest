@@ -2,7 +2,7 @@ A configurable chest (mod for minetest)
 
 # Overview
 
-State: **WIP**
+Provides configurable wifi-chests that can be separated with names per player
 
 # Licenses
 
