@@ -25,22 +25,6 @@ minetest.register_node("detached_chest:detached_chest", {
     meta:set_string("infotext", "Detached Chest (unconfigured)")
 	end,
 
-	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec",
-				"size[8,9]"..
-				default.gui_bg ..
-				default.gui_bg_img ..
-				default.gui_slots ..
-				"list[current_player;more_chests:wifi;0,0.3;8,4;]"..
-				"list[current_player;main;0,4.85;8,1;]" ..
-				"list[current_player;main;0,6.08;8,3;8]" ..
-				"listring[current_player;more_chests:wifi]" ..
-				"listring[current_player;main]" ..
-				default.get_hotbar_bg(0,4.85))
-
-	end,
-
   on_rightclick = function(pos, _, player)
     local meta = minetest.get_meta(pos)
     if meta:get_string("channel") == "" then

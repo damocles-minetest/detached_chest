@@ -14,10 +14,10 @@ function detached_chest.show_form_inventory(pos, player)
     default.gui_bg ..
     default.gui_bg_img ..
     default.gui_slots ..
-    "list[current_player;detached:" .. inv_name .. ";main;0,0.3;8,4;]"..
+    "list[detached:" .. inv_name .. ";main;0,0.3;8,4;]"..
     "list[current_player;main;0,4.85;8,1;]" ..
     "list[current_player;main;0,6.08;8,3;8]" ..
-    "listring[current_player;detached:" .. inv_name .. ";main]" ..
+    "listring[detached:" .. inv_name .. ";main]" ..
     "listring[current_player;main]" ..
     default.get_hotbar_bg(0,4.85)
 

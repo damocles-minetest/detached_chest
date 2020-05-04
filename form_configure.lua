@@ -4,7 +4,7 @@ local FORMNAME = "detached_chest_configure"
 function detached_chest.show_form_configure(pos, player)
 
   local playername = player:get_player_name()
-  local formspec = "field[channel;Channel;${channel}"
+  local formspec = "field[channel;Channel;channel_name]"
 
   minetest.show_formspec(playername,
 		FORMNAME .. ";" .. minetest.pos_to_string(pos),
@@ -28,7 +28,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		return
 	end
 
-	if fields.save and fields.channel then
+	if fields.channel then
 		meta:set_string("channel", fields.channel)
     meta:set_string("infotext", "Detached Chest (channel: " .. fields.channel .. ")")
 	end
