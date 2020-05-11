@@ -73,5 +73,6 @@ minetest.register_on_leaveplayer(function(player)
     file:close()
 
     minetest.remove_detached_inventory(inv_name)
+    player_inventories[playername] = nil
   end
 end)
